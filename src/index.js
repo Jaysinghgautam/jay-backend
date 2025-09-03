@@ -6,12 +6,17 @@ import dotenv from "dotenv";
 import connectDB from "./db/index.js";
 dotenv.config(); 
 
-connectDB();
+connectDB()
+.then(()=> {
+    app.listen(process.env.PORT || 4000, () => {
+      console.log(`Server is running on port ${process.env.PORT || 4000}`);
+    })
+  })
+.catch((eror)=> {
+    console.log("Error in DB connection", eror);
+})
 
-app.get("/", (req, res) => {
-  res.send("API is running....");
-});
-
+ 
 
 // (async () => {
 //    try {
@@ -33,7 +38,4 @@ app.get("/", (req, res) => {
 //    }
 // }) ();
 
-
-app.listen(process.env.PORT, () => {
-  console.log(`Server is running on port ${process.env.PORT}`);
-});
+ 
