@@ -16,7 +16,9 @@ connectDB()
     console.log("Error in DB connection", eror);
 })
 
- 
+ app.get("/", (req, res) => {
+   res.send("API is running....");
+ });
 
 // (async () => {
 //    try {
